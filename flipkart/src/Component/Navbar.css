@@ -1,0 +1,46 @@
+.class-button {
+  background-color: transparent;
+  color: white;
+  border: 0px;
+  cursor: pointer;
+  font-weight: 560;
+  font-size: 15px;
+  /* font-family: "Montserrat"; */
+
+  padding-top: 15px;
+}
+
+.class-menu {
+  position: relative;
+  display: inline-block;
+  /* float: right; */
+}
+.dropdownmenu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 200px;
+  z-index: 1;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  color: black;
+}
+
+.dropdownmenu a {
+  color: #666;
+  padding: 10px 10px 10px 10px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdownmenu a:hover {
+  background-color: white;
+  color: #3e86d2;
+}
+
+.class-menu:hover .dropdownmenu {
+  display: block;
+}
+
