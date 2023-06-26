@@ -4,6 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useDispatch, useSelector } from 'react-redux';
 import { Decrement, Increment, Value } from '../redux/action'
+import Navbar from '../Component/Navbar';
 
 
 
@@ -16,6 +17,7 @@ const HomePage = () => {
 
     return (
         <>
+            {/* <Navbar /> */}
             {/* navbar with icons */}
             <Flex padding={"5px"} boxShadow='lg' ga="30px" justifyContent={"space-evenly"} mt="20px" fontFamily={" Roboto, Arial, sans-serif"} lineHeight={"19px"} fontSize={"15px"} fontWeight={600} >
                 <Box onClick={() => dispatch(Value("Grocery"))}>
@@ -68,9 +70,9 @@ const HomePage = () => {
                 interval="1500"
                 showThumbs=""
                 marginTop="100px"
-                
+
             >
-               
+
                 <div>
                     <img
                         src="https://assets.ajio.com/cms/AJIO/WEB/24022023-UHP-D-MainBanner-P7-ArrowUSPA-upto50.jpg"
