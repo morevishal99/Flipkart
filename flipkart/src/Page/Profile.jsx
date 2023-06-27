@@ -187,31 +187,42 @@ const Profile = () => {
                     </Box>
 
                 </Box> : ""}
-                {value === "manageaddress" ?
-                    <Box boxShadow={"2xl"} width={"70%"} margin="auto" mt="10px" padding={"20px"}>
-                        <Text fontSize={"20px"} fontWeight={600}>Manage Address</Text>
-                        <Text fontSize={"20px"} fontWeight={400} ml="50px" mt={"20px"} color="#2874F0">Add New Address</Text>
-                        <Box>
-                            <Flex gap="20px" mt="10px" >
-                                <Input htmlSize={20} width='auto' placeholder=' Name' contentEditable={false} />
-                                <Input htmlSize={20} width='auto' placeholder='10-digit mobile number' contentEditable={false} />
-                            </Flex>
-                            <Flex gap="20px" mt="10px" >
-                                <Input htmlSize={20} width='auto' placeholder='Pincode' contentEditable={false} />
-                                <Input htmlSize={20} width='auto' placeholder='Locality' contentEditable={false} />
-                            </Flex>
-                            {/* <Input /> */}
-                            <Textarea width="489px" placeholder='Address (Area or Street)' mt="10px"></Textarea>
-                            <Flex gap="20px" mt="10px" >
-                                <Input htmlSize={20} width='auto' placeholder='City/District/Town' contentEditable={false} />
-                                <Select width={"238px"} placeholder='Select State'>
-                                    <option value='option1'>Option 1</option>
-                                    <option value='option2'>Option 2</option>
-                                    <option value='option3'>Option 3</option>
-                                </Select>                            </Flex>
-                        </Box>
+                {value === "manageaddress" ? <Box boxShadow={"2xl"} width={"70%"} margin="auto" mt="10px" padding={"20px"}>
+                    <Text fontSize={"20px"} fontWeight={600}>Manage Address</Text>
+                    <Text fontSize={"20px"} fontWeight={400} ml="50px" mt={"20px"} color="#2874F0">Add New Address</Text>
+                    <Box>
+                        <Flex gap="20px" mt="10px" >
+                            <Input htmlSize={20} width='auto' placeholder=' Name' contentEditable={false} />
+                            <Input htmlSize={20} width='auto' placeholder='10-digit mobile number' contentEditable={false} />
+                        </Flex>
+                        <Flex gap="20px" mt="10px" >
+                            <Input htmlSize={20} width='auto' placeholder='Pincode' contentEditable={false} />
+                            <Input htmlSize={20} width='auto' placeholder='Locality' contentEditable={false} />
+                        </Flex>
+                        {/* <Input /> */}
+                        <Textarea width="489px" placeholder='Address (Area or Street)' mt="10px"></Textarea>
+                        <Flex gap="20px" mt="10px" >
+                            <Input htmlSize={20} width='auto' placeholder='City/District/Town' contentEditable={false} />
+                            <Select width={"238px"} placeholder='Select State'>
+                                <option value='Andra Pradesh'>Andra Pradesh</option>
+                                <option value='Assam'>Assam</option>
+                                <option value='Chandigarh'>Chandigarh</option>
+                                <option value='Delhi'>Delhi</option>
+                                <option value='Goa'>Goa</option>
+                                <option value='Haryana'>Haryana</option>
+                                <option value='Jammu'>Jammu</option>
+                                <option value='Karnataka'>Karnataka</option>
+                                <option value='Maharashtra'>Maharashtra</option>
+                            </Select>
+                        </Flex>
+                        <Flex mt="20px" gap="30px">
+                            <Button colorScheme={"blue"} width="200px">Save</Button>
+                            <Button>Cancel</Button>
+                        </Flex>
                     </Box>
-                    : ""}
+                </Box> : ""}
+
+
             </Flex>
         </>
     )
