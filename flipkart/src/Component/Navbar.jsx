@@ -29,7 +29,7 @@ const Navbar = () => {
                 </Flex>
 
 
-                {/* login profile button */}
+                {/* login profile button  */}
                 {login === true ?
                     <div class="class-menu">
                         <button className="class-button">{"Username"}</button>
