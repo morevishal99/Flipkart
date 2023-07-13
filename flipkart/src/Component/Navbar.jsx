@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Button, Divider, Flex, Image, Input, InputGroup, InputLeftAddon, Stack, Text, useDisclosure, } from '@chakra-ui/react'
 import { IoIosSearch, IoIosAppstore, IoIosNotifications, IoMdPerson, IoMdGift, IoMdPower, IoIosHeart, IoIosCard, IoIosCart, IoIosArchive } from "react-icons/io";
 import "./Navbar.css"
@@ -12,9 +12,22 @@ import {
     ModalCloseButton,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavbarValue } from '../redux/action';
 const Navbar = () => {
-    const login = localStorage.getItem("login") || false
+    // const login = localStorage.getItem("login") || false
+    // const login = localStorage.getItem("login") || true
+    const login = true
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [navValue, setnavValue] = useState("");
+    const dispatch = useDispatch()
+    const handleNavValue = (e) => {
+        // setnavValue()
+        const navValue = e.target.value
+        setTimeout(() => {
+            dispatch(NavbarValue(navValue))
+        }, 1300)
+    }
 
     return (
         <Box height={"60px"} bg="#2874F0" position={"sticky"} zIndex={1}>
@@ -24,14 +37,14 @@ const Navbar = () => {
                 </Link>
                 {/* input box */}
                 <Flex padding={"10px"} width="40%" gap="5px" >
-                    <Input color={"grey"} bg={"white"} placeholder='Search for products, brands and more' type="Link" />
+                    <Input color={"grey"} bg={"white"} placeholder='Search for products, brands and more' onChange={handleNavValue} />
                     <IoIosSearch fontSize={"35px"} color="white" />
                 </Flex>
 
 
                 {/* login profile button  */}
                 {login === true ?
-                    <div class="class-menu">
+                    <div className="class-menu">
                         <button className="class-button">{"Username"}</button>
                         <Box className="dropdownmenu" padding={"10px"} >
                             <Flex gap={"10px"}  >
@@ -91,7 +104,7 @@ const Navbar = () => {
                             </Flex>
                         </Box>
                     </div> :
-                    <div class="class-menu">
+                    <div className="class-menu">
                         <button onClick={onOpen} className="class-button">{"Login"}</button>
                         {/* <Button className="class-button" >Open Modal</Button> */}
 
@@ -120,13 +133,13 @@ const Navbar = () => {
                         </Modal>
                     </div>}
 
-                <div class="class-menu">
+                <div className="class-menu">
                     <button className="class-button">{"Become a Seller"}</button>
                 </div>
 
                 {/* cart */}
 
-                <div class="class-menu">
+                <div className="class-menu">
                     {/* <button className="class-button">{"Username"}</button> */}
                     <Flex p={"15px"} gap="10px" className="class-button">
                         <IoIosCart fontSize="25px" />

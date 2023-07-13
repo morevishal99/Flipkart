@@ -1,28 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useDispatch, useSelector } from 'react-redux';
-import { Decrement, Increment, Value } from '../redux/action'
+import { Decrement, Increment,fetchData } from '../redux/action'
 import Navbar from '../Component/Navbar';
-
-
 
 const HomePage = () => {
     const counter = useSelector((state) => state.count)
-    const value = useSelector((state) => state.value)
-    console.log('Value: ', Value);
+    const navValue = useSelector((state) => state.navValue)
+    const data = useSelector((state) => state.data)
     const dispatch = useDispatch()
+    console.log('data:', data);
 
+    useEffect(() => {
+        // console.log('Value: ', navValue);
+        fetchData()
+        // dispatch(fetchData())
+
+    }, []);
 
     return (
         <>
             {/* <Navbar /> */}
             {/* navbar with icons */}
             <Flex padding={"5px"} boxShadow='lg' ga="30px" justifyContent={"space-evenly"} mt="20px" fontFamily={" Roboto, Arial, sans-serif"} lineHeight={"19px"} fontSize={"15px"} fontWeight={600} >
-                <Box onClick={() => dispatch(Value("Grocery"))}>
+                <Box onClick={() => dispatch()}>
                     <Image width="64px" src="https://rukminim1.flixcart.com/flap/128/128/image/29327f40e9c4d26b.png?q=100" />
-                    <Text>Grocery</Text>
+                    {/* <Text>Grocery{navValue}</Text> */}
+                    <Text>{navValue}</Text>
                 </Box>
                 <Box>
                     <Image width="64px" src="https://rukminim1.flixcart.com/flap/128/128/image/22fddf3c7da4c4f4.png?q=100" />
