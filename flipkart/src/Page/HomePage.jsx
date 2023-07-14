@@ -3,22 +3,21 @@ import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useDispatch, useSelector } from 'react-redux';
-import { Decrement, Increment,fetchData } from '../redux/action'
+import { Decrement, Increment, fetchData } from '../redux/action'
 import Navbar from '../Component/Navbar';
 
 const HomePage = () => {
+    const dispatch = useDispatch()
     const counter = useSelector((state) => state.count)
     const navValue = useSelector((state) => state.navValue)
-    const data = useSelector((state) => state.data)
-    const dispatch = useDispatch()
-    console.log('data:', data);
+    const productsData = useSelector((state) => state.data)
+    console.log('data:', productsData);
 
     useEffect(() => {
         // console.log('Value: ', navValue);
-        fetchData()
-        // dispatch(fetchData())
-
-    }, []);
+        // fetchData("womens")
+        dispatch(fetchData("womens"))
+    }, [fetchData]);
 
     return (
         <>
@@ -110,7 +109,14 @@ const HomePage = () => {
                     />
                 </div>
             </Carousel>
+            <Box display="grid" gridTemplateColumns={{md:"repeat(4,1fr)"}}>
+                {productsData?.map((item) =>
+                    <Box key={item._id} margin="auto">
+                        <Image width={"250px"}  src={item.src} />
 
+                    </Box>
+                )}
+            </Box>
         </>
     )
 }
