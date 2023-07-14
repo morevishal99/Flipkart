@@ -4,7 +4,7 @@ const initialState = {
     count: 0,
     loading: false,
     navValue: null,
-    data: null,
+    data: [],
     error: null
 }
 

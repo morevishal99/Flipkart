@@ -15,15 +15,21 @@ export const NavbarValue = (value) => ({
 //     type: "FETCH_DATA_FROM_API",
 //     payload: data
 // })
-export const fetchData = (category) => {
+export const fetchData = (category, navValue) => {
     return async (dispatch) => {
         dispatch({ type: FETCH_DATA_REQUEST });
 
         try {
             let res = await fetch(`https://kind-plum-agouti-tam.cyclic.app/product/${category}`)
             let data = await res.json()
+            if (navValue) {
+                let filterdata = data.filter((item) =>
+                    item.title.includes(navValue))
+                dispatch({ type: FETCH_DATA_SUCCESS, payload: filterdata })
+            } else {
+                dispatch({ type: FETCH_DATA_SUCCESS, payload: data })
+            }
             // let ok='hello'
-            dispatch({ type: FETCH_DATA_SUCCESS, payload: data })
             // .then((res) => res.json())
             // .then((res) => dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data }))
         } catch (error) {

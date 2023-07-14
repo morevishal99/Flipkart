@@ -11,13 +11,13 @@ const HomePage = () => {
     const counter = useSelector((state) => state.count)
     const navValue = useSelector((state) => state.navValue)
     const productsData = useSelector((state) => state.data)
-    console.log('data:', productsData);
+    // console.log('data:', productsData);
 
     useEffect(() => {
         // console.log('Value: ', navValue);
         // fetchData("womens")
-        dispatch(fetchData("womens"))
-    }, [fetchData]);
+        dispatch(fetchData("women",navValue))
+    }, [fetchData,navValue]);
 
     return (
         <>
@@ -109,7 +109,7 @@ const HomePage = () => {
                     />
                 </div>
             </Carousel>
-            <Box display="grid" gridTemplateColumns={{md:"repeat(4,1fr)"}}>
+            <Box display="grid" gridTemplateColumns={"repeat(4,1fr)"}>
                 {productsData?.map((item) =>
                     <Box key={item._id} margin="auto">
                         <Image width={"250px"}  src={item.src} />

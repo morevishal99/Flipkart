@@ -12,7 +12,7 @@ import {
     ModalCloseButton,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavbarValue } from '../redux/action';
 const Navbar = () => {
     // const login = localStorage.getItem("login") || false
@@ -20,13 +20,22 @@ const Navbar = () => {
     const login = true
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [navValue, setnavValue] = useState("");
+    const [inputNav, setinputNav] = useState([]);
     const dispatch = useDispatch()
+    const productsData = useSelector((state) => state.data)
+    console.log('productsData: ', productsData);
+
+
     const handleNavValue = (e) => {
-        // setnavValue()
+        setnavValue(e.target.value)
+        let data = productsData
+        data.length = 10
+        setinputNav(data)
+        console.log('data: ', data);
         const navValue = e.target.value
         setTimeout(() => {
             dispatch(NavbarValue(navValue))
-        }, 1300)
+        }, 1500)
     }
 
     return (
@@ -36,10 +45,18 @@ const Navbar = () => {
                     <Image width="150px" padding={"10px"} src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fk-plus_3b0baa.png" alt='logo' />
                 </Link>
                 {/* input box */}
-                <Flex padding={"10px"} width="40%" gap="5px" >
-                    <Input color={"grey"} bg={"white"} placeholder='Search for products, brands and more' onChange={handleNavValue} />
-                    <IoIosSearch fontSize={"35px"} color="white" />
-                </Flex>
+                <Box padding={"10px"} width="40%" gap="5px">
+                    <Flex  >
+                        <Input color={"grey"} bg={"white"} placeholder='Search for products, brands and more' onChange={handleNavValue} />
+                        <IoIosSearch fontSize={"35px"} color="white" />
+                    </Flex>
+                    {navValue ? <Box bg={"white"} boxShadow={"lg"}>{inputNav.map((item) =>
+                        <Box padding={"5px"} >
+                            <Text padding={"1px"} color={"#2874F0"}>{item.title}</Text>
+                        </Box>
+                    )}</Box> : ""}
+
+                </Box>
 
 
                 {/* login profile button  */}

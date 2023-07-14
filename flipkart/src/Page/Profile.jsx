@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Button, Checkbox, Flex, Image, Input, Select, Text, Textarea } from '@chakra-ui/react'
-import { IconName, AiFillCreditCard, AiOutlineDoubleRight, MdPayments, AiOutlineLogout, AiFillGift } from "react-icons/ai";
-import { Link } from 'react-router-dom';
+import {  AiFillCreditCard, AiOutlineDoubleRight, AiOutlineLogout, AiFillGift } from "react-icons/ai";
+// import { Link } from 'react-router-dom';
 import { IoMdPerson } from 'react-icons/io';
 
 const Profile = () => {
