@@ -3,31 +3,26 @@ import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useDispatch, useSelector } from 'react-redux';
-import { Decrement, Increment, fetchData } from '../redux/action'
+import { fetchData } from '../redux/action'
 import Navbar from '../Component/Navbar';
 
 const HomePage = () => {
     const dispatch = useDispatch()
-    const counter = useSelector((state) => state.count)
     const navValue = useSelector((state) => state.navValue)
     const productsData = useSelector((state) => state.data)
-    // console.log('data:', productsData);
-
+    // console.log('data:', productsData); 
     useEffect(() => {
-        // console.log('Value: ', navValue);
-        // fetchData("womens")
-        dispatch(fetchData("women",navValue))
-    }, [fetchData,navValue]);
+        dispatch(fetchData("women", navValue))
+    }, [fetchData, navValue]);
 
     return (
         <>
             {/* <Navbar /> */}
             {/* navbar with icons */}
-            <Flex padding={"5px"} boxShadow='lg' ga="30px" justifyContent={"space-evenly"} mt="20px" fontFamily={" Roboto, Arial, sans-serif"} lineHeight={"19px"} fontSize={"15px"} fontWeight={600} >
+            <Flex bg="white" width="100%" marginTop="55px" padding={"5px"} boxShadow='lg' gap="30px" justifyContent={"space-evenly"} fontFamily={" Roboto, Arial, sans-serif"} lineHeight={"19px"} fontSize={"15px"} fontWeight={600} >
                 <Box onClick={() => dispatch()}>
                     <Image width="64px" src="https://rukminim1.flixcart.com/flap/128/128/image/29327f40e9c4d26b.png?q=100" />
-                    {/* <Text>Grocery{navValue}</Text> */}
-                    <Text>{navValue}</Text>
+                    <Text>Grocery</Text>
                 </Box>
                 <Box>
                     <Image width="64px" src="https://rukminim1.flixcart.com/flap/128/128/image/22fddf3c7da4c4f4.png?q=100" />
@@ -109,11 +104,18 @@ const HomePage = () => {
                     />
                 </div>
             </Carousel>
-            <Box display="grid" gridTemplateColumns={"repeat(4,1fr)"}>
+            {/* map data here  */}
+            <Box display="grid" gridTemplateColumns={"repeat(4,1fr)"} gap="20px">
                 {productsData?.map((item) =>
                     <Box key={item._id} margin="auto">
-                        <Image width={"250px"}  src={item.src} />
-
+                        <Box>
+                            <Image width={"250px"} src={item.src} />
+                        </Box>
+                        <Box textAlign={"center"}>
+                            <Text color={"#2874F0"}>{item.title}</Text>
+                            <Text>{item.brand}</Text>
+                            <Text>discount{item.discount} Rs{item.discountPrice}</Text>
+                        </Box>
                     </Box>
                 )}
             </Box>

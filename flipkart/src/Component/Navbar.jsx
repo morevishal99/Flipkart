@@ -19,27 +19,27 @@ const Navbar = () => {
     // const login = localStorage.getItem("login") || true
     const login = true
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [navValue, setnavValue] = useState("");
-    const [inputNav, setinputNav] = useState([]);
     const dispatch = useDispatch()
-    const productsData = useSelector((state) => state.data)
-    console.log('productsData: ', productsData);
-
-
+    // const productsData = useSelector((state) => state.data)
     const handleNavValue = (e) => {
-        setnavValue(e.target.value)
-        let data = productsData
-        data.length = 10
-        setinputNav(data)
-        console.log('data: ', data);
+        // setnavValue(e.target.value)
         const navValue = e.target.value
+        function convertString(str) {
+            var words = str.split(' ');
+            var capitalizedWords = words.map(function (word) {
+                return word.charAt(0).toUpperCase() + word.slice(1);
+            });
+            var convertedString = capitalizedWords.join(' ');
+            return convertedString;
+        }
+        var convertedString = convertString(navValue);
         setTimeout(() => {
-            dispatch(NavbarValue(navValue))
+            dispatch(NavbarValue(convertedString))
         }, 1500)
     }
 
     return (
-        <Box height={"60px"} bg="#2874F0" position={"sticky"} zIndex={1}>
+        <Box bg="#2874F0" position={"fixed"} top={0} zIndex={1} width="100%">
             <Flex width="80%" margin="auto" justifyContent={"space-around"} color={"white"} fontWeight={500} fontSize="16px">
                 <Link to="/">
                     <Image width="150px" padding={"10px"} src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fk-plus_3b0baa.png" alt='logo' />
@@ -48,14 +48,8 @@ const Navbar = () => {
                 <Box padding={"10px"} width="40%" gap="5px">
                     <Flex  >
                         <Input color={"grey"} bg={"white"} placeholder='Search for products, brands and more' onChange={handleNavValue} />
-                        <IoIosSearch fontSize={"35px"} color="white" />
+                        {/* <IoIosSearch fontSize={"35px"} color="white" /> */}
                     </Flex>
-                    {navValue ? <Box bg={"white"} boxShadow={"lg"}>{inputNav.map((item) =>
-                        <Box padding={"5px"} >
-                            <Text padding={"1px"} color={"#2874F0"}>{item.title}</Text>
-                        </Box>
-                    )}</Box> : ""}
-
                 </Box>
 
 
